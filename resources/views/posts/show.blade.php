@@ -21,16 +21,22 @@
         <div class="col-md-4">
             <div class="well">
 
+                <!-- Slug element -->
+                <dl class="dl-horizontal">
+                    <label>Url:</label>
+                    <p><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></p>
+                </dl>
+
                 <!-- Created at element -->
                 <dl class="dl-horizontal">
-                    <dt>Created at:</dt>
-                    <dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
+                    <label>Created at:</label>
+                    <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
                 </dl>
 
                 <!-- Updated at element -->
                 <dl class="dl-horizontal">
-                    <dt>Updated at:</dt>
-                    <dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
+                    <label>Updated at:</label>
+                    <p>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</p>
                 </dl>
                 <hr>
 

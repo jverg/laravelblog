@@ -14,11 +14,15 @@
 
             <!-- Edit post title -->
             {{ Form::label('title', 'Title:') }}
-            {{ Form::text('title', null, array("class" => 'form-control input-lg')) }}
+            {{ Form::text('title', null, array('class' => 'form-control input-lg')) }}
+
+            <!-- Edit slug -->
+            {{ Form::label('slug', 'Slug:', array('class' => 'form-spacing-top')) }}
+            {{ Form::text('slug', null, array('class' => 'form-control')) }}
 
             <!-- Edit post body -->
             {{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
-            {{ Form::textarea('body', null, array("class" => 'form-control')) }}
+            {{ Form::textarea('body', null, array('class' => 'form-control')) }}
         </div>
 
         <!-- Sidebar -->
@@ -27,14 +31,14 @@
 
                 <!-- Created at element -->
                 <dl class="dl-horizontal">
-                    <dt>Created at:</dt>
-                    <dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
+                    <label>Created at:</label>
+                    <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
                 </dl>
 
                 <!-- Updated at element -->
                 <dl class="dl-horizontal">
-                    <dt>Updated at:</dt>
-                    <dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
+                    <label>Updated at:</label>
+                    <p>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</p>
                 </dl>
                 <hr>
 

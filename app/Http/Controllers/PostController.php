@@ -7,8 +7,12 @@ use Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class PostController extends Controller
-{
+/**
+ * Class PostController
+ * @package App\Http\Controllers
+ */
+class PostController extends Controller {
+
     /**
      * Display a listing of the post.
      *
@@ -42,12 +46,14 @@ class PostController extends Controller
         // Validate the data.
         $this->validate($request, array(
             'title' => 'required|max:255',
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
             'body' => 'required',
         ));
 
         // Store in the database
         $post = new Post;
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->body = $request->body;
         $post->save();
 
@@ -94,15 +100,29 @@ class PostController extends Controller
      */
     public function update(Request $request, $id) {
 
-        // Validate the data.
-        $this->validate($request, array(
-            'title' => 'required|max:255',
-            'body' => 'required',
-        ));
+        //Check if the slug has been updated or not.
+        $post = Post::find($id);
+        if ($request->input('slug') == $post->slug) {
+
+            // Validate the data.
+            $this->validate($request, array(
+                'title' => 'required|max:255',
+                'body' => 'required',
+            ));
+        } else {
+
+            // Validate the data.
+            $this->validate($request, array(
+                'title' => 'required|max:255',
+                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'body' => 'required',
+            ));
+        }
 
         // Save the data to the database.
         $post = Post::find($id);
         $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
         $post->body = $request->input('body');
         $post->save();
 

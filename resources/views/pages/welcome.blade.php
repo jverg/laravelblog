@@ -27,7 +27,7 @@
                   <div class="post">
                       <h3>{{ $post->title }}</h3>
                       <p>{{ substr($post->body, 0, 280) }}</p>
-                      <a href="#" class="btn btn-primary">Learn more</a>
+                      <a href="{{ url('blog/' . $post->slug) }}" class="btn btn-primary">Learn more</a>
                   </div>
 
                   <hr>

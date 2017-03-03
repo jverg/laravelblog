@@ -13,15 +13,15 @@
 
 Route::group(['middleware' => ['web']], function () {
 
+    // Post URLs with slugs.
+    Route::get('blog/{slug}', array('as' => 'blog.single', 'uses' => 'BlogController@getSingle'))->where('slug', '[\w\d\-\_]+');
+
     // Home page.
     Route::get('/', 'PagesController@getIndex');
-
     // About me page.
     Route::get('about', 'PagesController@getAbout');
-
     // Contact me page.
     Route::get('contact', 'PagesController@getContact');
-
     // Routes of post resource.
     Route::resource('posts', 'PostController');
 
