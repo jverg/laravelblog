@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+
 class PagesController extends Controller
 {
 
     // Home page.
     public function getIndex() {
-        return view('pages.welcome');
+
+        // Get the last 10 created posts.
+        $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+
+        // Redirect to the welcome view.
+        return view('pages.welcome')->withPosts($posts);
     }
 
     // About me page.

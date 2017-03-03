@@ -20,11 +20,13 @@
         <!-- Sidebar -->
         <div class="col-md-4">
             <div class="well">
+
                 <!-- Created at element -->
                 <dl class="dl-horizontal">
                     <dt>Created at:</dt>
                     <dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
                 </dl>
+
                 <!-- Updated at element -->
                 <dl class="dl-horizontal">
                     <dt>Updated at:</dt>
@@ -46,6 +48,14 @@
                         {!! Form::submit('Delete', array('class' => 'btn btn-danger btn-block')) !!}
                         {!! Form::close() !!}
                     </div>
+
+                    <!-- Show all posts button -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            {!! Html::linkRoute('posts.index', '<< See all posts', array(), array('class' => 'btn btn-default btn-block btn-h1-spacing')) !!}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
