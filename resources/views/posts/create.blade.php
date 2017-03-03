@@ -24,7 +24,7 @@
                 {{ Form::text('title', null, array('class' => 'form-control')) }}
 
                 <!-- Body -->
-                {{ Form::label('body', "Post body:") }}
+                {{ Form::label('body', "Post body:", array('class' => 'form-spacing-top')) }}
                 {{ Form::textarea('body', null, array('class' => 'form-control')) }}
 
                 <!-- Submit button -->

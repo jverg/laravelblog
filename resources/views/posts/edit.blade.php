@@ -3,28 +3,34 @@
 
 @extends('main')
 
-@section('title', '| View post')
+@section('title', '| Edit post')
 
 @section('content')
 
     <!-- Main content -->
     <div class="row">
         <div class="col-md-8">
-            <!-- Post title -->
-            <h1>{{ $post->title }}</h1>
+        {!! Form::model($post, array('route' => array('posts.update', $post->id), 'method' => 'PATCH')) !!}
 
-            <!-- Post body -->
-            <p class="lead">{{ $post->body }}</p>
+            <!-- Edit post title -->
+            {{ Form::label('title', 'Title:') }}
+            {{ Form::text('title', null, array("class" => 'form-control input-lg')) }}
+
+            <!-- Edit post body -->
+            {{ Form::label('body', 'Body:', array('class' => 'form-spacing-top')) }}
+            {{ Form::textarea('body', null, array("class" => 'form-control')) }}
         </div>
 
         <!-- Sidebar -->
         <div class="col-md-4">
             <div class="well">
+
                 <!-- Created at element -->
                 <dl class="dl-horizontal">
                     <dt>Created at:</dt>
                     <dd>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</dd>
                 </dl>
+
                 <!-- Updated at element -->
                 <dl class="dl-horizontal">
                     <dt>Updated at:</dt>
@@ -35,20 +41,20 @@
                 <!-- Delete and Edit buttons -->
                 <div class="row">
 
-                    <!-- Edit button -->
+                    <!-- Cancel button -->
                     <div class="col-sm-6">
-                        {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
+                        {!! Html::linkRoute('posts.show', 'Cancel', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}
                     </div>
 
-                    <!-- Delete button -->
+                    <!-- Save button -->
                     <div class="col-sm-6">
-                        {!! Form::open(array('method' => array('posts.destroy', $post->id), 'method' => 'DELETE')) !!}
-                        {!! Form::submit('Delete', array('class' => 'btn btn-danger btn-block')) !!}
-                        {!! Form::close() !!}
+                        {{ Form::submit('Save', array('class' => 'btn btn-success btn-block')) }}
                     </div>
                 </div>
             </div>
         </div>
+
+        {!! Form::close() !!}
     </div>
 
 @endsection
