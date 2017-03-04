@@ -28,3 +28,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('posts', 'PostController');
 
 });
+
+Route::get('auth/logout', 'Auth\LoginController@logout');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
