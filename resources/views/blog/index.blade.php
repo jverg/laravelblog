@@ -7,13 +7,6 @@
 
 @section('content')
 
-    <!-- Main content of the post -->
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1>Jverg's blog</h1>
-        </div>
-    </div>
-
     <!-- Main body of each post -->
     @foreach($posts as $post)
         <div class="row">
