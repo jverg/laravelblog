@@ -11,7 +11,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Jverg's Blog</a>
+            <a class="navbar-brand" href="/">Jverg's Blog</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,7 +36,7 @@
                         </ul>
                     </li>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-default">Login</a>
+                    <a href="{{ route('login') }}" class="btn btn-default login-button-top">Login</a>
                 @endif
             </ul>
         </div>

@@ -21,12 +21,6 @@
         <div class="col-md-4">
             <div class="well">
 
-                <!-- Slug element -->
-                <dl class="dl-horizontal">
-                    <label>Url:</label>
-                    <p><a href="{{ route('blog.single', $post->slug) }}">{{ route('blog.single', $post->slug) }}</a></p>
-                </dl>
-
                 <!-- Created at element -->
                 <dl class="dl-horizontal">
                     <label>Created at:</label>
