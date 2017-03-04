@@ -16,6 +16,8 @@ Route::group(['middleware' => ['web']], function () {
     // Post URLs with slugs.
     Route::get('blog/{slug}', array('as' => 'blog.single', 'uses' => 'BlogController@getSingle'))->where('slug', '[\w\d\-\_]+');
 
+    Route::get('blog', array('uses' => 'BlogController@getIndex', 'as' => 'blog.index'));
+
     // Home page.
     Route::get('/', 'PagesController@getIndex');
     // About me page.
