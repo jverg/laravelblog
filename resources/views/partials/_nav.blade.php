@@ -32,7 +32,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="/posts">Posts</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="auth/logout">Logout</a></li>
+                            <li><a href="{{ URL::to('auth/logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 @else

@@ -14,7 +14,7 @@
             <h1>{{ $post->title }}</h1><br>
 
             <!-- The date of the post -->
-            <h4>{{ date('M j, Y', strtotime($post->created_at)) }}</h4><br>
+            <h4>{{ date('M j, Y', strtotime($post->created_at)) }}</h4>
 
             <!-- Post body -->
             <p class="lead">{!! $post->body !!}</p>

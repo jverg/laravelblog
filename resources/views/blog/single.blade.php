@@ -12,21 +12,30 @@
     <div class="col-md-8 col-md-offset-2">
         <h1>{{ $post->title }}</h1><br>
         <h4>{{ date('M j, Y', strtotime($post->created_at)) }}</h4>
-        <p>{!! $post->body !!}</p>
+        <p>{!! $post->body !!}</p><br><br>
     </div>
 </div>
 
 <!-- COMMENTS -->
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        @foreach($post->comments as $comment)
-            <div class="comment">
-               <br><br><p><strong>Name: {{ $comment->name }}</strong></p>
-                <p><strong>Comment:<br/>{{ $comment->comment }}</strong></p><br>
-            </div>
-        @endforeach
-    </div>
-</div>
+@foreach($post->comments as $comment)
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table class="table">
+                <!-- Username for the comment -->
+                <thead>
+                <th><span class="glyphicon glyphicon-user"></span>{{ ' ' . $comment->name }}</th>
+                </thead>
+
+                <!-- Body of the comment -->
+                <tbody>
+                <tr>
+                    <td>{{ $comment->comment }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><br>
+@endforeach
 
 <div class="row">
     <div id="comment-form" class="col-md-8 col-md-offset-2" style="margin-top: 50px">
