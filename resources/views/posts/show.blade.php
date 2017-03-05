@@ -11,10 +11,13 @@
     <div class="row">
         <div class="col-md-8">
             <!-- Post title -->
-            <h1>{{ $post->title }}</h1>
+            <h1>{{ $post->title }}</h1><br>
+
+            <!-- The date of the post -->
+            <h4>{{ date('M j, Y', strtotime($post->created_at)) }}</h4><br>
 
             <!-- Post body -->
-            <p class="lead">{{ $post->body }}</p>
+            <p class="lead">{!! $post->body !!}</p>
 
             <!-- comments -->
             <div id="backend-comments" style="margin-top: 50px">

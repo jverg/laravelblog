@@ -7,26 +7,11 @@ use App\Comment;
 use App\Post;
 use Session;
 
-class CommentsController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+class CommentsController extends Controller {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function __construct() {
+
+        $this->middleware('auth', array('except' => 'store'));
     }
 
     /**
@@ -61,17 +46,6 @@ class CommentsController extends Controller
 
         // Redirect to the post's page.
         return redirect()->route('blog.single', array($post->slug));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -110,6 +84,10 @@ class CommentsController extends Controller
         return redirect()->route('posts.show', $comment->post->id);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function delete($id) {
 
         $comment = Comment::find($id);

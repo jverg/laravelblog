@@ -12,7 +12,7 @@
     <div class="col-md-8 col-md-offset-2">
         <h1>{{ $post->title }}</h1>
         <h4>{{ date('M j, Y', strtotime($post->created_at)) }}</h4>
-        <p>{{ $post->body }}</p>
+        <p>{!! $post->body !!}</p>
     </div>
 </div>
 
