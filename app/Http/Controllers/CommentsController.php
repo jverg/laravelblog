@@ -22,7 +22,7 @@ class CommentsController extends Controller {
      */
     public function store(Request $request, $post_id) {
 
-        // Validation.
+        // Validation to store a comment.
         $this->validate($request, array(
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
@@ -72,25 +72,34 @@ class CommentsController extends Controller {
      */
     public function update(Request $request, $id) {
 
+        // Bring the comment.
         $comment = Comment::find($id);
 
         $this->validate($request, array('comment' => 'required'));
 
+        // Save the updated comment.
         $comment->comment = $request->comment;
         $comment->save();
 
+        // Message for success store of the comment.
         Session::flash('success', 'Comment updated');
 
+        // Redirect to the post's page.
         return redirect()->route('posts.show', $comment->post->id);
     }
 
     /**
+     * Function that delete a comment
+     *
      * @param $id
      * @return mixed
      */
     public function delete($id) {
 
+        // Bring the comment to delete.
         $comment = Comment::find($id);
+
+        // Return the deletion view.
         return view('comments.delete')->withComment($comment);
     }
 
@@ -102,12 +111,15 @@ class CommentsController extends Controller {
      */
     public function destroy($id) {
 
+        // Delete a comment.
         $comment = Comment::find($id);
         $post_id = $comment->post->id;
         $comment->delete();
 
+        // Success message if a comment deleted successfully.
         Session::flash('success', 'Delete comment');
 
+        // Redirect to post's page.
         return redirect()->route('posts.show', $post_id);
     }
 }

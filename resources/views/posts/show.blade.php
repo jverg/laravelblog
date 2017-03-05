@@ -1,5 +1,5 @@
 
-<!-- Show a post -->
+<!-- Show a post with permission to edit -->
 
 @extends('main')
 
@@ -19,7 +19,7 @@
             <!-- Post body -->
             <p class="lead">{!! $post->body !!}</p>
 
-            <!-- comments -->
+            <!-- ALL COMMENTS of the post -->
             <div id="backend-comments" style="margin-top: 50px">
                 <h3>Comments:<small>{{ $post->comments()->count() }}</small></h3>
                 <table class="table">
@@ -52,13 +52,13 @@
         <div class="col-md-4">
             <div class="well">
 
-                <!-- Created at element -->
+                <!-- Created_at element -->
                 <dl class="dl-horizontal">
                     <label>Created at:</label>
                     <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
                 </dl>
 
-                <!-- Updated at element -->
+                <!-- Updated_at element -->
                 <dl class="dl-horizontal">
                     <label>Updated at:</label>
                     <p>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</p>

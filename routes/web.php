@@ -13,11 +13,11 @@
 
 Route::group(['middleware' => ['web']], function () {
 
-    // Post URLs with slugs.
+    // Post's URLs with slugs.
     Route::get('blog/{slug}', array('as' => 'blog.single', 'uses' => 'BlogController@getSingle'))->where('slug', '[\w\d\-\_]+');
     Route::get('/', array('uses' => 'BlogController@getIndex', 'as' => 'blog.index'));
 
-    // Table with Posts.
+    // Table with all posts.
     Route::resource('posts', 'PostController');
 
     // Comments.

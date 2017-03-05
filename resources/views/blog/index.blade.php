@@ -1,5 +1,5 @@
 
-<!-- Show welcome posts -->
+<!-- Show welcome page -->
 
 @extends('main')
 
@@ -15,12 +15,14 @@
                 <h4>{{ date('M j, Y', strtotime($post->created_at)) }}</h4>
                 <p>{{ substr(strip_tags($post->body), 0, 250) }}</p>
 
+                <!-- Read more button -->
                 <a href="{{ route('blog.single', $post->slug) }}" class="btn btn-primary">Read more</a>
                 <hr>
             </div>
         </div>
     @endforeach
 
+    <!-- Pagination -->
     <div class="row">
         <div class="col-md-12">
             <div class="text-center">

@@ -1,5 +1,5 @@
 
-<!-- Show a post -->
+<!-- Show a post for all users -->
 
 @extends('main')
 
@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <table class="table">
-                <!-- Username for the comment -->
+                <!-- Username of the comment -->
                 <thead>
                 <th><span class="glyphicon glyphicon-user"></span>{{ ' ' . $comment->name }}</th>
                 </thead>
@@ -37,6 +37,7 @@
     </div><br>
 @endforeach
 
+<!-- Form that create comments -->
 <div class="row">
     <div id="comment-form" class="col-md-8 col-md-offset-2" style="margin-top: 50px">
         {{ Form::open(array('route' => array('comments.store', $post->id), 'method' => 'POST')) }}
