@@ -44,7 +44,8 @@
         <div class="row">
             <div class="col-md-6">
                 {{ Form::label('name', 'Name:') }}
-                {{ Form::text('name', null, array('class' => 'form-control')) }}
+                {{ Request::is('/') ? "active" : "" }}
+                {{ Form::text('name', Auth::user() ? Auth::user()->name : 'Anonymous', array('class' => 'form-control')) }}
             </div>
 
             <div class="col-md-6">

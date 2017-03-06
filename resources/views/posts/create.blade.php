@@ -6,7 +6,7 @@
 @section('title', '| Create new post')
 
 @section('stylesheets')
-    {!! Html::style('css/parsley.css') !!}}
+    {!! Html::style('css/parsley.css') !!}
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
     <script>
