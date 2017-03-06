@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 class CommentsController extends Controller {
@@ -24,7 +25,6 @@ class CommentsController extends Controller {
 
         // Validation to store a comment.
         $this->validate($request, array(
-            'name' => 'required|max:255',
             'comment' => 'required|min:5|max:2000',
         ));
 
@@ -33,7 +33,7 @@ class CommentsController extends Controller {
 
         // Create the comment.
         $comment = new Comment();
-        $comment->name = $request->name;
+        $comment->name = Auth::user() ? Auth::user()->name : 'Anonymous';
         $comment->comment = $request->comment;
         $comment->approved = TRUE;
         $comment->post()->associate($post);
@@ -75,7 +75,6 @@ class CommentsController extends Controller {
 
         // Validation to update a comment.
         $this->validate($request, array(
-            'name' => 'required|max:255',
             'comment' => 'required|min:5|max:2000',
         ));
 
