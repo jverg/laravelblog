@@ -42,21 +42,17 @@
     <div id="comment-form" class="col-md-8 col-md-offset-2" style="margin-top: 50px">
         {{ Form::open(array('route' => array('comments.store', $post->id), 'method' => 'POST')) }}
         <div class="row">
+            <!-- The name of the user that creates the comment -->
             <div class="col-md-6">
                 {{ Form::label('name', 'Name:') }}
                 {{ Request::is('/') ? "active" : "" }}
-                {{ Form::text('name', Auth::user() ? Auth::user()->name : 'Anonymous', array('class' => 'form-control')) }}
+                {{ Form::text('name', Auth::user() ? Auth::user()->name : 'Anonymous', array('class' => 'form-control', 'disabled' => 'disabled')) }}
             </div>
 
-            <div class="col-md-6">
-                {{ Form::label('email'), 'Email:' }}
-                {{ Form::text('email', null, array('class' => 'form-control')) }}
-            </div>
-
+            <!-- Tha body of the comment -->
             <div class="col-md-12">
                 {{ Form::label('comment'), 'Comment:' }}
                 {{ Form::textarea('comment', null, array('class' => 'form-control', 'rows' => '5')) }}
-
                 {{ Form::submit('Add comment', array('class' => 'btn btn-success btn-block btn-h1-spacing')) }}
             </div>
         </div>

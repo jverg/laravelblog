@@ -4,25 +4,25 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentsTable extends Migration
-{
+class CreateCommentsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
+
+        // Schema for comment's table.
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email');
             $table->text('comment');
             $table->boolean('approved');
             $table->integer('post_id')->unsigned();
             $table->timestamps();
         });
 
+        // Reference each comment with a post's id.
         Schema::table('comments', function ($table) {
            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
@@ -33,9 +33,7 @@ class CreateCommentsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('comments');
-        Schema::dropForeign(array('post_id'));
     }
 }

@@ -20,7 +20,7 @@ Route::group(['middleware' => ['web']], function () {
     // Table with all posts.
     Route::resource('posts', 'PostController');
 
-    // Comments.
+    // Routes for the comment elements.
     Route::post('comments/{post_id}', array('uses' => 'CommentsController@store', 'as' => 'comments.store'));
     Route::get('comments/{id}/edit', array('uses' => 'CommentsController@edit', 'as' => 'comments.edit'));
     Route::patch('comments/{id}', array('uses' => 'CommentsController@update', 'as' => 'comments.update'));

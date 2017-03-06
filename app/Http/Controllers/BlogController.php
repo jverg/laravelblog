@@ -20,7 +20,7 @@ class BlogController extends Controller {
     public function getIndex() {
 
         // Pagination for posts.
-        $posts = Post::paginate(4);
+        $posts = Post::orderBy('id', 'desc')->paginate(4);
 
         // Return view.
         return view('blog.index')->withPosts($posts);

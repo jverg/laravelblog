@@ -13,9 +13,6 @@
         {{ Form::label('name', 'Name:') }}
         {{ Form::text('name', null, array('class' => 'form-control', 'disabled' => 'disabled')) }}
 
-        {{ Form::label('email', 'Email:') }}
-        {{ Form::text('email', null, array('class' => 'form-control', 'disabled' => 'disabled')) }}
-
         {{ Form::label('comment', 'Comment') }}
         {{ Form::textarea('comment', null, array('class' => 'form-control')) }}
 

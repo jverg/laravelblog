@@ -10,6 +10,7 @@
     <!-- Main content -->
     <div class="row">
         <div class="col-md-8">
+
             <!-- Post title -->
             <h1>{{ $post->title }}</h1><br>
 
@@ -26,7 +27,6 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Email</th>
                             <th>Comment</th>
                             <th width="70px"></th>
                         </tr>
@@ -34,9 +34,12 @@
                     <tbody>
                         @foreach($post->comments as $comment)
                             <tr>
+
+                                <!-- Main content for comments -->
                                 <td>{{ $comment->name }}</td>
-                                <td>{{ $comment->email }}</td>
                                 <td>{{ $comment->comment }}</td>
+
+                                <!-- Edit and delete buttons for a comment. -->
                                 <td width="70px">
                                     <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
@@ -86,10 +89,8 @@
                             {!! Html::linkRoute('posts.index', '<< See all posts', array(), array('class' => 'btn btn-default btn-block btn-h1-spacing')) !!}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
