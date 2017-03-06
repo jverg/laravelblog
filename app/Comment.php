@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model{
 
     /**
-     * One must have a post.
+     * One comment must have a post.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
