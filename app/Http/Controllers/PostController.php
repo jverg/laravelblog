@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -28,8 +31,12 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        // Create a variable and store all the blog posts in it from the database.
-        $posts = Post::orderBy('id', 'desc')->paginate(4);
+
+        // Brings the user's id.
+        $user = Auth::id();
+
+        // Brings the current user's posts.
+        $posts = Post::where('author', $user)->orderBy('id', 'desc')->paginate(4);
 
         // Return a view and pass in the above variable
         return view('posts.index')->withPosts($posts);
@@ -41,6 +48,8 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
+
+        // Create post form.
         return view('posts.create');
     }
 
@@ -64,6 +73,7 @@ class PostController extends Controller {
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->author = Auth::user()->id;
         $post->save();
 
         // Success message just for one request.
@@ -81,8 +91,17 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $post = Post::find($id);
-        return view('posts.show')->withPost($post);
+
+        // Brings the user's id.
+        $user = Auth::id();
+
+        // Check if the user has access to this post.
+        $post = Post::where('author', $user)->find($id);
+        if ($post) {
+            return view('posts.show')->withPost($post);
+        } else {
+            return $this->index();
+        }
     }
 
     /**
@@ -93,11 +112,17 @@ class PostController extends Controller {
      */
     public function edit($id) {
 
-        // Find the post and save as a var.
-        $post = Post::find($id);
+        // Brings the user's id.
+        $user = Auth::id();
 
-        // return the view and pass in the var we previously created.
-        return view('posts.edit')->withPost($post);
+        // Check if the user has access to this post.
+        $post = Post::where('author', $user)->find($id);
+        if ($post) {
+            // return the view and pass in the var we previously created.
+            return view('posts.edit')->withPost($post);
+        } else {
+            return $this->index();
+        }
     }
 
     /**
@@ -129,7 +154,6 @@ class PostController extends Controller {
         }
 
         // Save the data to the database.
-        $post = Post::find($id);
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->body = $request->input('body');
