@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Comment;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 use Session;
 
 class CommentsController extends Controller {
@@ -54,11 +55,33 @@ class CommentsController extends Controller {
      */
     public function edit($id) {
 
+        // Brings the user's id.
+        $user = Auth::id();
+
+        // Get the id of the user's post.
+        $posts = Post::where('author', $user)->get();
+        $user_posts_id = array();
+        foreach ($posts as $post) {
+            $user_posts_id[] = $post->id;
+        }
+
         // Bring the comment.
         $comment = Comment::find($id);
+        $post_id_of_comment = $comment->post_id;
 
-        // Return the view.
-        return view('comments.edit')->withComment($comment);
+        // Check if this post belongs to the user.
+        if (in_array($post_id_of_comment, $user_posts_id)) {
+
+            // Bring the comment.
+            $comment = Comment::find($id);
+
+            // Return the edit comment view.
+            return view('comments.edit')->withComment($comment);
+        } else {
+
+            // Redirect the user to hoem page.
+            return redirect('/');
+        }
     }
 
     /**
