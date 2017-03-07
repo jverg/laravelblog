@@ -13,3 +13,7 @@
 .comment-top {
     margin-top: 50px;
 }
+
+.small-col {
+    width: 65%;
+}

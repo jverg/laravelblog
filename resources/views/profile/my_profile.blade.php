@@ -16,7 +16,12 @@
                             <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
                         </div>
                         <div class="col-sm-6 col-md-8">
-                            <h2>{{ $user->name }}</h2><hr>
+                            <p>
+
+                            <h2><a href="{{ route('user.edit', Auth::id()) }}"><i class="fa fa-pencil"></i></a>
+                                {{ $user->name }}
+                            </h2><hr>
+                            </p>
                             <p>
                                 <h4>Social</h4>
                                 <i class="fa fa-facebook-official"></i><a href="#"> Facebook</a><br>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,9 +38,28 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+
+        // Validate the data.
+        $this->validate($request, array(
+            'name' => 'required',
+            'email' => 'required',
+        ));
+
+        // Store in the database
+        $user = new User;
+        $user->name = $request->name;
+        $user->facebook = $request->facebook;
+        $user->twitter = $request->twitter;
+        $user->address = $request->address;
+        $user->birthday = $request->birthday;
+        $user->save();
+
+        // Success message just for one request.
+        Session::flash('success', 'The user was successfully save!');
+
+        // Redirect to the page of the last created post.
+        return redirect()->route('user.show', $user->id);
     }
 
     /**
@@ -48,9 +68,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id) {
+
+        $user = User::find($id);
+
+        // Return the user's Profile.
+        return view('profile.my_profile')->withUser($user);
     }
 
     /**
@@ -59,9 +82,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+
+        // User's id.
+        $user = Auth::user();
+
+        return view('profile.edit')->withUser($user);
     }
 
     /**
