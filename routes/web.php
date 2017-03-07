@@ -17,8 +17,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('blog/{slug}', array('as' => 'blog.single', 'uses' => 'BlogController@getSingle'))->where('slug', '[\w\d\-\_]+');
     Route::get('/', array('uses' => 'BlogController@getIndex', 'as' => 'blog.index'));
 
-    // Table with all posts.
+    // Post's routes.
     Route::resource('posts', 'PostController');
+
+    // User's routes.
+    Route::resource('user', 'UserController');
+
 
     // Routes for the comment elements.
     Route::post('comments/{post_id}', array('uses' => 'CommentsController@store', 'as' => 'comments.store'));
@@ -26,6 +30,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::patch('comments/{id}', array('uses' => 'CommentsController@update', 'as' => 'comments.update'));
     Route::delete('comments/{id}', array('uses' => 'CommentsController@destroy', 'as' => 'comments.destroy'));
     Route::get('comments/{id}/delete', array('uses' => 'CommentsController@delete', 'as' => 'comments.delete'));
+
+    // My profile page.
+//    Route::get('/{id}/myprofile', array('uses' => 'UserController@index', 'as' => 'profile.my_profile'));
+
 });
 
 // Logout.
