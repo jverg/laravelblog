@@ -13,7 +13,7 @@
                             <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
                         </div>
                         <div class="col-sm-6 col-md-8">
-                            {!! Form::open(array('route' => 'user.store')) !!}
+                            {!! Form::model($user, array('route' => array('user.update', $user->id), 'method' => 'PATCH')) !!}
                                 <p>
                                     <h4>Username:</h4>
                                     {{ Form::text('name', $user->name, array('class' => 'form-control')) }}<hr>

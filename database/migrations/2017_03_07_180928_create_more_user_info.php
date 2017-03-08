@@ -15,9 +15,9 @@ class CreateMoreUserInfo extends Migration
     {
         // Create author's column.
         Schema::table('users', function (Blueprint $table) {
-            $table->string('facebook')->nullable;
-            $table->string('twitter')->nullable;
-            $table->string('address')->nullable;
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('address')->nullable();
             $table->timestamp('birthday')->nullable();
         });
     }

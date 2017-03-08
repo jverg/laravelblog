@@ -24,13 +24,13 @@
                             </p>
                             <p>
                                 <h4>Social</h4>
-                                <i class="fa fa-facebook-official"></i><a href="#"> Facebook</a><br>
-                                <i class="fa fa-twitter"></i><a href="#"> Twitter</a>
+                                <i class="fa fa-facebook-official"></i><a href="{{ $user->facebook }}"> Facebook</a><br>
+                                <i class="fa fa-twitter"></i><a href="{{ $user->twitter }}"> Twitter</a>
                             </p><hr>
                             <p>
-                                <h5><i class="glyphicon glyphicon-map-marker"></i>   San Francisco, USA</h5>
-                                <h5><i class="glyphicon glyphicon-envelope"></i>   {{ $user->email }}</h5>
-                                <h5><i class="glyphicon glyphicon-gift"></i>   June 02, 1988</h5>
+                                <h5><i class="fa fa-map-marker"></i> {{ $user->address }}</h5>
+                                <h5><i class="fa fa-envelope"></i>   {{ $user->email }}</h5>
+                                <h5><i class="fa fa-gift"></i> {{ $user->birthday }}</h5>
                             </p>
                         </div>
                     </div>

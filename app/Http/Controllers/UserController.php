@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class UserController extends Controller
 {
@@ -49,10 +50,11 @@ class UserController extends Controller
         // Store in the database
         $user = new User;
         $user->name = $request->name;
-        $user->facebook = $request->facebook;
-        $user->twitter = $request->twitter;
-        $user->address = $request->address;
-        $user->birthday = $request->birthday;
+        $user->email = $request->email;
+        $user->facebook = $request->facebook->null;
+        $user->twitter = $request->twitter->null;
+        $user->address = $request->address->null;
+        $user->birthday = $request->birthday->null;
         $user->save();
 
         // Success message just for one request.
@@ -85,7 +87,7 @@ class UserController extends Controller
     public function edit($id) {
 
         // User's id.
-        $user = Auth::user();
+        $user = User::find($id);
 
         return view('profile.edit')->withUser($user);
     }
@@ -97,9 +99,30 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id) {
+
+        $user = User::find($id);
+
+        // Validate the data.
+        $this->validate($request, array(
+            'name' => 'required',
+            'email' => 'required',
+        ));
+
+        // Store in the database
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->facebook = $request->input('facebook');
+        $user->twitter = $request->input('twitter');
+        $user->address = $request->input('address');
+        $user->birthday = $request->input('birthday');
+        $user->save();
+
+        // Success message just for one request.
+        Session::flash('success', 'The user was successfully save!');
+
+        // Redirect to the page of the last created post.
+        return redirect()->route('user.show', $user->id);
     }
 
     /**
