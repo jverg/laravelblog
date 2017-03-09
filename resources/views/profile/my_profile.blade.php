@@ -24,13 +24,17 @@
                             </p>
                             <p>
                                 <h4>Social</h4>
-                                <i class="fa fa-facebook-official"></i><a href="{{ $user->facebook }}"> Facebook</a><br>
-                                <i class="fa fa-twitter"></i><a href="{{ $user->twitter }}"> Twitter</a>
+                                @if($user->facebook)
+                                    <a style="color:#3B5998" class="btn btn-default" href="{{ $user->facebook }}" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
+                                @endif
+                                @if($user->twitter)
+                                <a style="color:#1DA1F2" class="btn btn-default" href="{{ $user->twitter }}" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+                                @endif
                             </p><hr>
                             <p>
-                                <h5><i class="fa fa-map-marker"></i> {{ $user->address }}</h5>
-                                <h5><i class="fa fa-envelope"></i>   {{ $user->email }}</h5>
-                                <h5><i class="fa fa-gift"></i> {{ $user->birthday }}</h5>
+                                <h5><i class="{{ $user->address ? "fa fa-map-marker" : "" }}"></i> {{ $user->address }}</h5>
+                                <h5><i class="{{ $user->email ? "fa fa-envelope" : "" }}"></i>   {{ $user->email }}</h5>
+                                <h5><i class="{{ $user->birthday ? "fa fa-gift" : "" }}"></i> {{ $user->birthday }}</h5>
                             </p>
                         </div>
                     </div>

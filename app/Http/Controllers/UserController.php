@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
+
         // User's id.
         $user = Auth::user();
 
@@ -28,8 +28,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -74,8 +73,12 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        // Return the user's Profile.
-        return view('profile.my_profile')->withUser($user);
+        if ($user->id == Auth::id()) {
+            // Return the user's Profile.
+            return view('profile.my_profile')->withUser($user);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
