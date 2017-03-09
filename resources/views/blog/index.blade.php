@@ -20,7 +20,7 @@
                     </a>{{ ' - ' . date('M j, Y', strtotime($post->created_at)) }}
                 </h4>
                 <p>{{ substr(strip_tags($post->body), 0, 250) }}</p><br>
-                <h5>Comments:<small>{{ $post->comments()->count() }}</small></h5>
+                <h5>Comments:<small> {{ $post->comments()->count() }}</small></h5>
 
                 <!-- Read more button -->
                 <a href="{{ route('blog.single', $post->slug) }}" class="btn btn-primary">Read more</a>

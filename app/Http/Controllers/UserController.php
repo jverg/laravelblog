@@ -131,7 +131,7 @@ class UserController extends Controller {
         $user->save();
 
         // Success message just for one request.
-        Session::flash('success', 'The user was successfully updated!');
+        Session::flash('success', 'Your profile has been successfully updated!');
 
         // Redirect to the page of the last created post.
         return redirect()->route('user.show', $user->id);

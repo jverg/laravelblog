@@ -46,8 +46,8 @@
                         <td>{{ substr(strip_tags($post->body), 0, 50) }}</td>
                         <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
                         <td>
-                            <a style="color:white; background-color:cornflowerblue" href="{{ route('posts.show', $post->id) }}" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></a>
-                            <a style="color:whitesmoke; background-color:yellowgreen" href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i></a>
+                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-default btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-sm btn-success"><i class="fa fa-pencil"></i></a>
                         </td>
                     </tr>
                 @endforeach

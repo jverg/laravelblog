@@ -1,5 +1,5 @@
 
-<!-- Show welcome page -->
+<!-- Show author's page -->
 
 @extends('main')
 
