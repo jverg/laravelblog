@@ -10,12 +10,14 @@
 <!-- Main content of the post -->
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
+
         <h1>{{ $post->title }}</h1><br>
         <h4><span class="fa fa-user"></span>
         <a href="{{ route('user.show', \App\User::find($post->author)->id) }}">
             {{ \App\User::find($post->author)->name }}
         </a>{{ ' - ' . date('M j, Y', strtotime($post->created_at)) }}
         </h4>
+        <img src="{{ asset('post_images/' . $post->image) }}"/>
         <p>{!! $post->body !!}</p><br><br>
     </div>
 </div>
@@ -25,9 +27,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <table class="table">
+
                 <!-- Username of the comment -->
                 <thead>
-                <th><span class="glyphicon glyphicon-user"></span>{{ ' ' . $comment->name }}</th>
+                <th><span class="fa fa-user"></span>{{ ' ' . $comment->name }}</th>
                 </thead>
 
                 <!-- Body of the comment -->

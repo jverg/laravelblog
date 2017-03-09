@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Session;
@@ -74,6 +75,17 @@ class PostController extends Controller {
         $post->slug = $request->slug;
         $post->body = $request->body;
         $post->author = Auth::user()->id;
+
+        // Save our image.
+        if($request->hasFile('post_images')) {
+            $image = $request->file('post_images');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = public_path('post_images/' . $filename);
+            Image::make($image)->save($location);
+
+            $post->image = $filename;
+        }
+
         $post->save();
 
         // Success message just for one request.
