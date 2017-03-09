@@ -15,16 +15,14 @@
                         <div class="col-sm-6 col-md-8">
                             {!! Form::model($user, array('route' => array('user.update', $user->id), 'method' => 'PATCH')) !!}
                                 <p>
-                                    <h4>Username:</h4>
-                                    {{ Form::text('name', $user->name, array('class' => 'form-control')) }}<hr>
+                                    {{ Form::text('name', $user->name, array('class' => 'form-control form-spacing-top')) }}<hr>
                                 </p>
                                 <p>
-                                    <h4>Social</h4>
-                                    <i class="fa fa-facebook-official fa-2x"></i>
-                                    {{ Form::text('facebook', $user->facebook, array('class' => 'form-control small-col ')) }}
+                                    <i style="color:#3B5998" class="fa fa-facebook-official fa-2x"></i>
+                                    {{ Form::text('facebook', $user->facebook, array('class' => 'form-control small-col')) }}
                                     <br>
 
-                                    <i class="fa fa-twitter fa-2x"></i>
+                                    <i style="color:#1DA1F2" class="fa fa-twitter fa-2x"></i>
                                     {{ Form::text('twitter', $user->twitter, array('class' => 'form-control small-col')) }}
 
                                 </p><br><hr>

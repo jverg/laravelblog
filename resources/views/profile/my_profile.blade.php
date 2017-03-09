@@ -18,11 +18,14 @@
                         <div class="col-sm-6 col-md-8">
                             <p>
 
-                            <h2><a href="{{ route('user.edit', Auth::id()) }}"><i class="fa fa-pencil"></i></a>
+                            <h2>
                                 {{ $user->name }}
-                            </h2><hr>
+                                <a href="{{ route('user.edit', Auth::id()) }}"><i class="fa fa-pencil pencil-right"></i></a>
+                            </h2>
                             </p>
                             <p>
+                            @if(($user->facebook) || ($user->twitter))
+                                <hr>
                                 <h4>Social</h4>
                                 @if($user->facebook)
                                     <a style="color:#3B5998" class="btn btn-default" href="{{ $user->facebook }}" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
@@ -30,6 +33,7 @@
                                 @if($user->twitter)
                                     <a style="color:#1DA1F2" class="btn btn-default" href="{{ $user->twitter }}" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
                                 @endif
+                            @endif
                             </p><hr>
                             <p>
                                 <h5><i class="{{ $user->address ? "fa fa-map-marker" : "" }}"></i> {{ $user->address }}</h5>
