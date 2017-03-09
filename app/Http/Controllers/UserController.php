@@ -16,7 +16,7 @@ class UserController extends Controller {
      */
     public function index() {
 
-        // User's id.
+        // Return the logged in User.
         $user = Auth::user();
 
         // Return the user's Profile.
@@ -71,8 +71,10 @@ class UserController extends Controller {
      */
     public function show($id) {
 
+        // Return the User according his id.
         $user = User::find($id);
 
+        // Check if is current user's view.
         if ($user->id == Auth::id()) {
             // Return the user's Profile.
             return view('profile.my_profile')->withUser($user);
@@ -89,10 +91,16 @@ class UserController extends Controller {
      */
     public function edit($id) {
 
-        // User's id.
+        // Return the User according his id.
         $user = User::find($id);
 
-        return view('profile.edit')->withUser($user);
+        // Check if is current user's view.
+        if ($user->id == Auth::id()) {
+            // Return the user's Profile.
+            return view('profile.edit')->withUser($user);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -104,6 +112,7 @@ class UserController extends Controller {
      */
     public function update(Request $request, $id) {
 
+        // Return the User according his id.
         $user = User::find($id);
 
         // Validate the data.

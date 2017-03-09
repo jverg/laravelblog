@@ -59,12 +59,12 @@
 
                     <!-- Cancel button -->
                     <div class="col-sm-6">
-                        {!! Html::linkRoute('posts.show', 'Cancel', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}
+                        {!! Html::linkRoute('posts.show', '', array($post->id), array('class' => 'btn btn-danger btn-block fa fa-ban fa-2x')) !!}
                     </div>
 
                     <!-- Save button -->
                     <div class="col-sm-6">
-                        {{ Form::submit('Save', array('class' => 'btn btn-success btn-block')) }}
+                        {{ Form::button('<i class="fa fa-save fa-2x"></i>', array('type' => 'submit', 'class' => 'btn btn-success btn-block')) }}
                     </div>
                 </div>
             </div>

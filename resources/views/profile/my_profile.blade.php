@@ -28,7 +28,7 @@
                                     <a style="color:#3B5998" class="btn btn-default" href="{{ $user->facebook }}" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
                                 @endif
                                 @if($user->twitter)
-                                <a style="color:#1DA1F2" class="btn btn-default" href="{{ $user->twitter }}" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+                                    <a style="color:#1DA1F2" class="btn btn-default" href="{{ $user->twitter }}" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
                                 @endif
                             </p><hr>
                             <p>
