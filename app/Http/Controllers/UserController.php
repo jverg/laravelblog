@@ -74,12 +74,11 @@ class UserController extends Controller {
         // Return the User according his id.
         $user = User::find($id);
 
-        // Check if is current user's view.
-        if ($user->id == Auth::id()) {
-            // Return the user's Profile.
+        // Return the user's Profile.
+        if($user == Auth::user()) {
             return view('profile.my_profile')->withUser($user);
         } else {
-            return redirect('/');
+            return view('profile.show')->withUser($user);
         }
     }
 
@@ -99,6 +98,7 @@ class UserController extends Controller {
             // Return the user's Profile.
             return view('profile.edit')->withUser($user);
         } else {
+            // If the user have no access redirect to home page.
             return redirect('/');
         }
     }
@@ -121,7 +121,7 @@ class UserController extends Controller {
             'email' => 'required',
         ));
 
-        // Store in the database
+        // Store the user in the database
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->facebook = $request->input('facebook');
@@ -131,7 +131,7 @@ class UserController extends Controller {
         $user->save();
 
         // Success message just for one request.
-        Session::flash('success', 'The user was successfully save!');
+        Session::flash('success', 'The user was successfully updated!');
 
         // Redirect to the page of the last created post.
         return redirect()->route('user.show', $user->id);

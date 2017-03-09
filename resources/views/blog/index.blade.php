@@ -12,7 +12,13 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h2>{{ $post->title }}</h2>
-                <h4><span class="glyphicon glyphicon-user"></span>  {{ \App\User::find($post->author)->name . ' - ' . date('M j, Y', strtotime($post->created_at)) }}</h4>
+
+                <!-- Link to author's profile -->
+                <h4><span class="fa fa-user"></span>
+                    <a href="{{ route('user.show', \App\User::find($post->author)->id) }}">
+                        {{ \App\User::find($post->author)->name }}
+                    </a>{{ ' - ' . date('M j, Y', strtotime($post->created_at)) }}
+                </h4>
                 <p>{{ substr(strip_tags($post->body), 0, 250) }}</p><br>
                 <h5>Comments:<small>{{ $post->comments()->count() }}</small></h5>
 
