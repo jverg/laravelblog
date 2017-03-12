@@ -37,7 +37,7 @@ class PostController extends Controller {
         $user = Auth::id();
 
         // Brings the current user's posts.
-        $posts = Post::where('author', $user)->orderBy('id', 'desc')->paginate(4);
+        $posts = Post::where('user_id', $user)->orderBy('id', 'desc')->paginate(4);
 
         // Return a view and pass in the above variable
         return view('posts.index')->withPosts($posts);
@@ -74,7 +74,7 @@ class PostController extends Controller {
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->body = $request->body;
-        $post->author = Auth::user()->id;
+        $post->user_id = Auth::user()->id;
 
         // Save our image.
         if($request->hasFile('post_images')) {
@@ -108,7 +108,7 @@ class PostController extends Controller {
         $user = Auth::id();
 
         // Check if the user has access to this post.
-        $post = Post::where('author', $user)->find($id);
+        $post = Post::where('user_id', $user)->find($id);
         if ($post) {
             return view('posts.show')->withPost($post);
         } else {
@@ -128,7 +128,7 @@ class PostController extends Controller {
         $user = Auth::id();
 
         // Check if the user has access to this post.
-        $post = Post::where('author', $user)->find($id);
+        $post = Post::where('user_id', $user)->find($id);
         if ($post) {
             // return the view and pass in the var we previously created.
             return view('posts.edit')->withPost($post);

@@ -59,7 +59,7 @@ class CommentsController extends Controller {
         $user = Auth::id();
 
         // Get the id of the user's post.
-        $posts = Post::where('author', $user)->get();
+        $posts = Post::where('user_id', $user)->get();
         $user_posts_id = array();
         foreach ($posts as $post) {
             $user_posts_id[] = $post->id;

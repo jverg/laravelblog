@@ -15,12 +15,12 @@ class AddAthorToPosts extends Migration
 
         // Create author's column.
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('author')->unsigned();
+            $table->integer('user_id')->unsigned();
         });
 
         // Reference each post with a user id.
         Schema::table('posts', function ($table) {
-            $table->foreign('author')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

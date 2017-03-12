@@ -13,8 +13,8 @@
 
         <h1>{{ $post->title }}</h1><br>
         <h4><span class="fa fa-user"></span>
-        <a href="{{ route('user.show', \App\User::find($post->author)->id) }}">
-            {{ \App\User::find($post->author)->name }}
+        <a href="{{ route('user.show', \App\User::find($post->user_id)->id) }}">
+            {{ \App\User::find($post->user_id)->name }}
         </a>{{ ' - ' . date('M j, Y', strtotime($post->created_at)) }}
         </h4>
         <img src="{{ asset('post_images/' . $post->image) }}"/>
